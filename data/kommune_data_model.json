@@ -18,7 +18,7 @@
             "en": "Flooding"
           },
           "description": {
-            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau, multipliée par un facteur d'augmentation de variation de précipitations extrêmes.",
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau, multipliée par un d'augmentation des précipitations extrêmes.",
             "en": "Proportion of the municipality area covered by a river flooding risk, multiplied by a factor of rainfall intensity increase."
           }
         },
