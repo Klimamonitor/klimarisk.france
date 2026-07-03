@@ -12,7 +12,7 @@ function LayoutSelect() {
   return (
     <div className="layoutSelect">
       <div className="label">
-        {l(t.header.layout.label)}
+        {l(t.header.layout.label)} :
       </div>
       <button 
         onClick={() => setLayout("first")}

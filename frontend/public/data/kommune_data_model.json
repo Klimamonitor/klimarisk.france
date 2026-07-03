@@ -18,7 +18,7 @@
             "en": "Flooding"
           },
           "description": {
-            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau, multipliée par un facteur d'augmentation de variation de précipitations extrêmes.",
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau, multipliée par un d'augmentation des précipitations extrêmes.",
             "en": "Proportion of the municipality area covered by a river flooding risk, multiplied by a factor of rainfall intensity increase."
           }
         },
@@ -97,8 +97,8 @@
         "fr": "Vulnérabilité"
       },
       "description": {
-        "fr": "Prédisposition intrinsèque des caractéristiques socio-économiques à subir des effets préjudiciables.",
-        "en": "Intrinsic predisposition of socio-economic characteristics to be adversely affected."
+        "fr": "Prédispositions socio-économiques à subir des effets préjudiciables.",
+        "en": "Socio-economic predispositions to be adversely affected."
       },
       "metrics": [
         {
@@ -144,7 +144,7 @@
       },
       "description": {
         "fr": "Présence de personnes, d'infrastructures et d'écosystèmes.",
-        "en": "Presence of people, infrastructure, and ecosystems in zones susceptible to hazards."
+        "en": "Presence of people, infrastructure, and ecosystems."
       },
       "metrics": [
         {
@@ -189,8 +189,8 @@
         "fr": "Réponse"
       },
       "description": {
-        "fr": "L'index de Réponse reflète les efforts de la commune pour faire face aux problèmes climatiques.",
-        "en": "The Response index reflects the municipality's efforts in fighting climate issues."
+        "fr": "Mesure des efforts de la commune pour faire face aux problèmes climatiques.",
+        "en": "Measure of municipality's efforts in fighting climate issues."
       },
       "metrics": [
         {

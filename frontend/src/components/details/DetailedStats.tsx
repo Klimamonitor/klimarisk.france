@@ -50,6 +50,8 @@ export type RankRisk = {
   name: Record<Language, string>;
   rank: number;
   rankFylke: number;
+  totalCount: number;      // 🎯 AJOUTÉ : Nombre d'entités total (échelle nationale)
+  totalCountFylke: number; // 🎯 AJOUTÉ : Nombre d'entités total (échelle départementale / locale)
   elements: RankElement[];
 }
 
@@ -84,6 +86,8 @@ function DetailedStats() {
       name: t.common.totalRisk,
       rank: getDescendingRank(yearCache.byTotalRisk, currentKommuneCache.totalRisk),
       rankFylke: getDescendingRank(fylkeRiskDist, currentKommuneCache.totalRisk),
+      totalCount: yearCache.byTotalRisk.length, // 🎯 AJOUTÉ : Extrait la taille de la distribution nationale
+      totalCountFylke: fylkeRiskDist.length,   // 🎯 AJOUTÉ : Extrait la taille de la distribution départementale
       elements: dataModel.elements.filter(e => !e.disabled).map(e => {
         const fylkeElementDist = getFylkeDistribution(selectedKommune, { type: "element", key: e.key }, selectedYear) || [];
         return {

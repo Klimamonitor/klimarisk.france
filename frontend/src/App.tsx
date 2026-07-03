@@ -10,22 +10,30 @@ import useLanguageStore, { t } from './hooks/useLanguageStore';
 import Header from './components/header/Header';
 import Panel from './components/Panel';
 
-// Composant de l'écran avec barre de progression réelle
 type LoadingScreenProps = {
   progress: number;
 };
 
+// Composant de l'écran avec barre de progression réelle adapté aux deux langues
 function LoadingScreen({ progress }: LoadingScreenProps) {
+  // 🎯 AJOUTÉ : Utilisation de la méthode de traduction du store
+  const l = useLanguageStore((state) => state.l);
+
   return (
     <div style={styles.container}>
       <div style={styles.card}>
         <h2 style={styles.title}>Klimarisk France</h2>
-        <p style={styles.subtitle}>Chargement des indicateurs de risque climatique... ({progress}%)</p>
+        <p style={styles.subtitle}>
+          {l({
+            fr: `Chargement des indicateurs de risque climatique... (${progress}%)`,
+            en: `Loading of climate risk indicators... (${progress}%)`
+          })}
+        </p>
         <div style={styles.progressContainer}>
           <div
             style={{
               ...styles.progressBar,
-              width: `${progress}%`, // Largeur dynamique basée sur la progression réelle
+              width: `${progress}%`, 
             }}
           />
         </div>
@@ -173,7 +181,7 @@ const styles = {
     height: '100%',
     backgroundColor: '#f97316',
     borderRadius: '3px',
-    transition: 'width 0.3s ease-out', 
+    transition: 'width 0.3s ease-out',
   },
 };
 

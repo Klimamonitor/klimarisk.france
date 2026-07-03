@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { Source, Layer, useMap } from 'react-map-gl/maplibre';
 import useDataStore from '../../hooks/useDataStore';
+import useLanguageStore from '../../hooks/useLanguageStore'; // 🎯 AJOUTÉ : Importation de ton store de langue
 import { getDataFileJSON } from '../../hooks/getPublicUrl';
 import type { KommuneNr } from '../../hooks/useDataStore';
 
@@ -20,6 +21,9 @@ function KommuneLayer({ setIsLoading }: KommuneLayerProps) { // 🎯 AJOUTÉ : P
   const [showRegBorders, setShowRegBorders] = useState<boolean>(true);
 
   const prevSelectedRef = useRef<string | null>(null);
+
+  // 🎯 AJOUTÉ : Récupération de la fonction de traduction de ton store
+  const l = useLanguageStore((state) => state.l);
 
   const {
     selectedKommune,
@@ -207,7 +211,10 @@ function KommuneLayer({ setIsLoading }: KommuneLayerProps) { // 🎯 AJOUTÉ : P
             checked={showDeptBorders}
             onChange={(e) => setShowDeptBorders(e.target.checked)}
           />
-          <span className="controlLabelText">Départements</span>
+          {/* 🎯 TRADUIT : Application de la fonction l() du store */}
+          <span className="controlLabelText">
+            {l({ fr: 'Départements', en: 'Departments' })}
+          </span>
         </label>
         <label className="overlayControlItem">
           <input
@@ -215,7 +222,10 @@ function KommuneLayer({ setIsLoading }: KommuneLayerProps) { // 🎯 AJOUTÉ : P
             checked={showRegBorders}
             onChange={(e) => setShowRegBorders(e.target.checked)}
           />
-          <span className="controlLabelText">Régions</span>
+          {/* 🎯 TRADUIT : Application de la fonction l() du store */}
+          <span className="controlLabelText">
+            {l({ fr: 'Régions', en: 'Regions' })}
+          </span>
         </label>
       </div>
     </>

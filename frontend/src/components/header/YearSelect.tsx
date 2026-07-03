@@ -16,7 +16,7 @@ function YearSelect() {
   return (
     <div className="yearSelect">
       <div className="label">
-        {l(t.header.year.label)}
+        {l(t.header.year.label)} :
       </div>
       {dataModel?.years.map(year => (
         <button

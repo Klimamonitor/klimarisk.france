@@ -7,10 +7,10 @@ import { useEffect, useRef } from "react";
 
 interface Props {
   r: RankRisk;
-  countyName?: string; // 👈 1. Déclaration de la nouvelle prop optionnelle
+  countyName?: string;
 }
 
-function DetailsRisk({ r, countyName }: Props) { // 👈 2. Récupération de countyName
+function DetailsRisk({ r, countyName }: Props) {
   const {
     selectedKommune,
     setHighlightedDistribution,
@@ -52,7 +52,6 @@ function DetailsRisk({ r, countyName }: Props) { // 👈 2. Récupération de co
         </div>
         <div style={{ "--detailsHeaderColor": "var(--c-fylke)" } as React.CSSProperties}>
           <Tooltip text={l(t.details.tooltip.fylke)}>
-            {/* 🎯 3. Utilisation de countyName s'il existe, sinon fallback linguistique */}
             {countyName || l(t.chart.tooltip.county)}
           </Tooltip>
         </div>
@@ -71,11 +70,13 @@ function DetailsRisk({ r, countyName }: Props) { // 👈 2. Récupération de co
         <div className="detailsName">
           {l(r.name)}
         </div>
+        {/* 🎯 MODIFIÉ : Intégration du dénominateur total national */}
         <div className="detailsRank">
-          {r.rank}
+          {r.rank} <span className="rankDenominator">/ {r.totalCount}</span>
         </div>
+        {/* 🎯 MODIFIÉ : Intégration du dénominateur total départemental/local */}
         <div className="detailsRankFylke">
-          {r.rankFylke}
+          {r.rankFylke} <span className="rankDenominator">/ {r.totalCountFylke}</span>
         </div>
       </button>
       <ul className="detailsElementsContainer">

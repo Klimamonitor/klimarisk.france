@@ -1,115 +1,113 @@
-/* ==========================================================================
-   1. STRUCTURE GLOBALE ET SUPPRESSION DES PUCES (UL / LI)
-   ========================================================================== */
+  /* ==========================================================================
+    1. STRUCTURE GLOBALE ET SUPPRESSION DES PUCES (UL / LI)
+    ========================================================================== */
 
-.detailsList {
-  padding: 0;
-  margin: 0;
-  display: block !important;
-  height: 100% !important;
-  min-height: 100% !important;
-  background-color: var(--c-bg3);
-}
+  .detailsList {
+    padding: 0;
+    margin: 0;
+    display: block !important;
+    height: 100% !important;
+    min-height: 100% !important;
+    background-color: var(--c-bg3);
+  }
 
-.detailsList ul,
-.detailsList li,
-.detailsRisk ul,
-.detailsRisk li {
-  list-style: none !important;
-  list-style-type: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
+  .detailsList ul,
+  .detailsList li,
+  .detailsRisk ul,
+  .detailsRisk li {
+    list-style: none !important;
+    list-style-type: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
 
-.detailsList ul ul {
-  padding-left: 1.5rem !important;
-}
+  .detailsList ul ul {
+    padding-left: 1.5rem !important;
+  }
 
-/* ==========================================================================
-   2. EN-TÊTE FIXE ET ALIGNÉ (ECHELLE NATIONALE / SYSTÈME MACRO)
-   ========================================================================== */
+  /* ==========================================================================
+    2. EN-TÊTE FIXE ET ALIGNÉ (ECHELLE NATIONALE / SYSTÈME MACRO)
+    ========================================================================== */
 
-.detailsHeader {
-  display: flex;
-  user-select: none;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding-right: 2.5rem;
-  /* Ajusté à 2.5rem pour s'aligner sur la zone d'action detailsHandle */
-  position: sticky;
-  top: 0;
-  background-color: var(--c-bg1);
-  z-index: 1;
-}
+  .detailsHeader {
+    display: flex;
+    user-select: none;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 2.5rem;
+    position: sticky;
+    top: 0;
+    background-color: var(--c-bg1);
+    z-index: 1;
+  }
 
-/* Colonne Référence Nationale / Globale (En-tête) */
-.detailsHeader>div {
-  width: 7rem;
-  /* Augmenté légèrement pour offrir plus de flexibilité aux libellés longs */
-  text-align: right;
-  color: var(--detailsHeaderColor);
-  border-bottom: 2px solid var(--detailsHeaderColor);
-}
+  /* Colonne Référence Nationale / Globale (En-tête) */
+  .detailsHeader>div {
+    width: 7rem;
+    text-align: right;
+    color: var(--detailsHeaderColor);
+    border-bottom: 2px solid var(--detailsHeaderColor);
+  }
 
-/* Colonne Échelle Territoriale Locale / Intermédiaire (En-tête) */
-.detailsHeader>div:last-child {
-  width: 6.5rem;
-  margin-left: 1.5rem;
-  text-align: right;
-}
+  /* Colonne Échelle Territoriale Locale / Intermédiaire (En-tête) */
+  .detailsHeader>div:last-child {
+    width: 6.5rem;
+    margin-left: 1.5rem;
+    text-align: right;
+  }
 
-.detailsRisk {
-  display: block !important;
-  height: auto !important;
-}
+  .detailsRisk {
+    display: block !important;
+    height: auto !important;
+  }
 
-.detailsRisk.selected .detailsHeader {
-  background-color: var(--c-bg3);
-}
+  .detailsRisk.selected .detailsHeader {
+    background-color: var(--c-bg3);
+  }
 
-/* ==========================================================================
-   3. CONTENEUR DE LIGNE (HANDLE) & NEUTRALISATION DES BOUTONS
-   ========================================================================== */
+  /* ==========================================================================
+    3. CONTENEUR DE LIGNE (HANDLE) & NEUTRALISATION DES BOUTONS
+    ========================================================================== */
 
-.detailsHandle {
-  background: none;
-  border: none;
-  font: inherit;
-  color: inherit;
-  text-align: inherit;
-  width: 100%;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  padding-right: 2.5rem;
-  padding-left: var(--detail-padding);
-  padding-block: 0.2rem !important;
-  line-height: 1.4 !important;
-  font-weight: 400;
-  transition: 0;
-}
+  .detailsHandle {
+    background: none;
+    border: none;
+    font: inherit;
+    color: inherit;
+    text-align: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 2.5rem;
+    padding-left: var(--detail-padding);
+    padding-block: 0.2rem !important;
+    line-height: 1.4 !important;
+    font-weight: 400;
+    transition: 0;
+  }
 
-.colorBox {
-  background-color: var(--risk-color);
-  width: 1em;
-  height: 1em;
-  display: inline-block;
-  flex-shrink: 0;
-}
+  .colorBox {
+    background-color: var(--risk-color);
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    flex-shrink: 0;
+  }
 
-.detailsName {
-  color: var(--c-text);
-  flex: 1;
-  padding-left: var(--detail-padding);
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  /* Permet au nom de s'étirer au maximum et de tronquer proprement */
-}
+  .detailsName {
+    color: var(--c-text);
+    flex: 1;
+    padding-left: var(--detail-padding);
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Permet au nom de s'étirer au maximum et de tronquer proprement */
+  }
 
 /* ==========================================================================
    4. ALIGNEMENT STRICT DES VALEURS DE CLASSEMENT (DONNÉES)
@@ -117,71 +115,86 @@
 
 .detailsRank {
   color: var(--c-norge);
-  width: 5.5rem;
+  width: 7rem;
+  /* Garde la largeur augmentée pour donner de la place */
   text-align: right;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  /* 🎯 AJOUTÉ : Empêche le dénominateur de glisser en dessous */
 }
 
 .detailsRankFylke {
   color: var(--c-fylke);
-  width: 6.5rem;
+  width: 7.5rem;
+  /* Garde la largeur augmentée pour donner de la place */
   margin-left: 1.5rem;
   text-align: right;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  /* 🎯 AJOUTÉ : Empêche le dénominateur de glisser en dessous */
 }
 
-/* ==========================================================================
-   5. VARIATIONS DE TAILLES SELON LA HIÉRARCHIE DE L'ARBRE
-   ========================================================================== */
-
-.detailsRisk>.detailsHandle {
-  font-size: 1.6rem;
-  --detail-padding: .25em;
+.rankDenominator {
+  display: inline;
+  /* 🎯 MODIFIÉ : "inline" simple suffit avec le nowrap du parent */
+  font-size: 0.65em;
+  opacity: 0.5;
+  font-weight: 400;
+  margin-left: 0.10rem;
 }
 
-.detailsElement>.detailsHandle {
-  font-size: 1.2rem;
-  --detail-padding: .8em;
-}
+  /* ==========================================================================
+    5. VARIATIONS DE TAILLES SELON LA HIÉRARCHIE DE L'ARBRE
+    ========================================================================== */
 
-.detailsMetric>.detailsHandle {
-  font-size: 1rem;
-  --detail-padding: .2em;
-}
+  .detailsRisk>.detailsHandle {
+    font-size: 1.6rem;
+    --detail-padding: .25em;
+  }
 
-/* ==========================================================================
-   6. ÉTATS INTERACTIFS (SURVOL ET SÉLECTION)
-   ========================================================================== */
+  .detailsElement>.detailsHandle {
+    font-size: 1.2rem;
+    --detail-padding: .8em;
+  }
 
-.detailsList .highlighted,
-.detailsHandle:hover {
-  background-color: var(--c-highlighted);
-}
+  .detailsMetric>.detailsHandle {
+    font-size: 1rem;
+    --detail-padding: .2em;
+  }
 
-.detailsList .selected,
-.detailsRisk.selected>.detailsHandle,
-.detailsElement.selected>.detailsHandle,
-.detailsMetric.selected>.detailsHandle {
-  background-color: var(--c-bg3);
-}
+  /* ==========================================================================
+    6. ÉTATS INTERACTIFS (SURVOL ET SÉLECTION)
+    ========================================================================== */
 
-/* ==========================================================================
-   7. DESTRUCTION DES PROPRIÉTÉS FLEX/GRID INTERNES ET ESPACEMENT GÉRÉ
-   ========================================================================== */
+  .detailsList .highlighted,
+  .detailsHandle:hover {
+    background-color: var(--c-highlighted);
+  }
 
-.detailsRisk>ul,
-.detailsRisk>ul>li,
-.detailsElement>ul,
-.detailsElement>ul>li {
-  display: block !important;
-  float: none !important;
-  clear: both !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
+  .detailsList .selected,
+  .detailsRisk.selected>.detailsHandle,
+  .detailsElement.selected>.detailsHandle,
+  .detailsMetric.selected>.detailsHandle {
+    background-color: var(--c-bg3);
+  }
 
-.detailsRisk>ul>li {
-  margin-top: 1rem !important;
-}
+  /* ==========================================================================
+    7. DESTRUCTION DES PROPRIÉTÉS FLEX/GRID INTERNES ET ESPACEMENT GÉRÉ
+    ========================================================================== */
+
+  .detailsRisk>ul,
+  .detailsRisk>ul>li,
+  .detailsElement>ul,
+  .detailsElement>ul>li {
+    display: block !important;
+    float: none !important;
+    clear: both !important;
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  .detailsRisk>ul>li {
+    margin-top: 1rem !important;
+  }

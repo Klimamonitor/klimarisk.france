@@ -21,7 +21,7 @@ const text = {
       },
       label: {
         en: "Analysis mode",
-        fr: "Mode d'analyse",
+        fr: "Mode d'analyse",  
       }
     },
     year: {
@@ -36,8 +36,8 @@ const text = {
       en: "Risk Customization Tree",
       fr: "Personnalisation du risque",
       tooltip: {
-        en: "This tree shows how total risk is built up from the four determinants (Hazard, Vulnerability, Exposure and Response) and their indicators, as described by the IPCC. Each determinant is calculated as a sum of its indicators, normalized from 0 to 100. The total risk is the sum of the determinants, with no normalization.",
-        fr: "Cet arbre montre comment le risque global est construit à partir de quatre déterminants (Aléa, Vulnérabilité, Exposition and Réponse) et de leurs indicateurs, comme décrit par le GIEC. Chaque déterminant est calculé comme la somme de ses indicateurs, normalisée de 0 à 100. Le risque global est la somme des déterminants, sans normalisation.",
+        en: "This tree shows how total risk is built up from the four determinants (Hazard, Vulnerability, Exposure and Response) and their indicators, as described by the IPCC. Each determinant is calculated as a sum of its indicators, normalized from 0 to 100. The total risk is the sum of the determinants, normalised.",
+        fr: "Cet arbre montre comment le risque global est construit à partir de quatre déterminants (Aléa, Vulnérabilité, Exposition and Réponse) et de leurs indicateurs, comme décrit par le GIEC. Chaque déterminant est calculé comme la somme de ses indicateurs, normalisée de 0 à 100. Le risque global est la somme des déterminants, normalisée.",
       },
     },
     map: {
