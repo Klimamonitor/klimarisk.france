@@ -34,6 +34,17 @@
           }
         },
         {
+          "key": "hErosion",
+          "name": {
+            "fr": "Érosion côtière",
+            "en": "Coastal Erosion"
+          },
+          "description": {
+            "fr": "Indicateur national d'érosion côtière",
+            "en": "National indicator for coastal erosion."
+          }
+        },
+        {
           "key": "hHeat",
           "name": {
             "fr": "Canicule",
@@ -45,10 +56,21 @@
           }
         },
         {
+          "key": "hDrought",
+          "name": {
+            "fr": "Sécheresse",
+            "en": "Drought"
+          },
+          "description": {
+            "fr": "Nombre de jours avec un sol sec",
+            "en": "Number of days with a dry soil."
+          }
+        },
+        {
           "key": "hSsc",
           "name": {
-            "fr": "Retrait-Gonflement des Argiles",
-            "en": "Shrinkage-Swelling of Clays"
+            "fr": "Retrait-Gonflement des argiles",
+            "en": "Shrinkage-Swelling of clays"
           },
           "description": {
             "fr": "Part de la surface communale avec un risque identifié de RGA, multiplié par un facteur d'augmentation de l'intensité de la sécheresse",
@@ -86,6 +108,17 @@
           "description": {
             "fr": "Variation du nombre de jours enneigés à la plus haute altitude de la commune",
             "en": "Variation in the number of snow-covered days at the highest altitude of the municipality."
+          }
+        },
+        {
+          "key": "hSnowresorts",
+          "name": {
+            "fr": "Réduction du manteau neigeux",
+            "en": "Snow cover reduction"
+          },
+          "description": {
+            "fr": "Variation du nombre de jours enneigés multiplié par un facteur de dépendance socio-économique à l'économie du ski.",
+            "en": "Variation in the number of snow-covered days multiplied by a factor of socio-economic dependence on the ski economy."
           }
         }
       ]
