@@ -9,38 +9,36 @@ interface Props {
 }
 
 function DetailsMetric({ m }: Props) {
-
   const {
     setHighlightedDistribution,
     setSelectedDistribution,
-    selectedKommune,
     getRiskColor,
+    selectedKommune,
     selectedDistribution,
     highlightedDistribution,
   } = useDataStore();
   const { l } = useLanguageStore();
 
   function handleInspectDistribution(key: DistributionKey) {
-    if (selectedDistribution.type === "metric" && key.type === "metric" && selectedDistribution.key === key.key) return setSelectedDistribution({ type: "risk" });
+    if (selectedDistribution.type === "metric" && key.type === "metric" && selectedDistribution.key === key.key) {
+      return setSelectedDistribution({ type: "risk" });
+    }
     setSelectedDistribution(key);
   }
-
 
   const selectedDistRef = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (selectedDistRef.current !== null) {
       selectedDistRef.current.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
-  }, [selectedDistribution]); // Should scroll to show selected distribution detail
+  }, [selectedDistribution]);
 
   return (
-    <li 
-      className={`detailsMetric ${selectedDistribution.type === "metric" && selectedDistribution.key === m.key ? "selected" : ""}`}
-    >
-      <button 
-        onMouseEnter={() => setHighlightedDistribution({type: "metric", key: m.key})}
+    <li className={`detailsMetric ${selectedDistribution.type === "metric" && selectedDistribution.key === m.key ? "selected" : ""}`}>
+      <button
+        onMouseEnter={() => setHighlightedDistribution({ type: "metric", key: m.key })}
         onMouseLeave={() => setHighlightedDistribution(null)}
-        onClick={() => handleInspectDistribution({type: "metric", key: m.key})}
+        onClick={() => handleInspectDistribution({ type: "metric", key: m.key })}
         className={`detailsHandle ${highlightedDistribution && highlightedDistribution.type === "metric" && highlightedDistribution.key === m.key ? "highlighted" : ""}`}
         ref={selectedDistribution.type === "metric" && selectedDistribution.key === m.key ? selectedDistRef : null}
       >
@@ -53,15 +51,17 @@ function DetailsMetric({ m }: Props) {
             {l(m.name)}
           </Tooltip>
         </div>
+
         <div className="detailsRank">
-          {m.rank}
+          {m.rank !== null ? m.rank : "-"}
         </div>
+
         <div className="detailsRankFylke">
-          {m.rankFylke}
+          {m.rankFylke !== null ? m.rankFylke : "-"}
         </div>
       </button>
     </li>
-  )
+  );
 }
 
 export default DetailsMetric;

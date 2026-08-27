@@ -15,7 +15,7 @@
 }
 
 /* ==========================================================================
-   EN-TÊTE (THEAD) - SYNCHRONISATION DU SCROLL
+   EN-TÊTE (THEAD) - FORMAT COMPACT
    ========================================================================== */
 .rt-thead {
   position: sticky;
@@ -37,7 +37,7 @@
 }
 
 .rt-thead button {
-  padding: 0 0.5em;
+  padding: 0 0.3em;
   background: none;
   border: none;
   text-wrap: nowrap;
@@ -56,22 +56,22 @@
 
 .rt-thead button:hover,
 .rt-thead button:focus-visible {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .sortIcon {
-  padding-left: 0.2em;
+  padding-left: 0.15em;
   display: flex;
   align-items: center;
 }
 
 .sortIcon svg {
-  height: 1em;
-  width: 1em;
+  height: 0.85em;
+  width: 0.85em;
 }
 
 /* ==========================================================================
-   CORPS ET ALIGNEMENT REACT-WINDOW
+   CORPS ET ALIGNEMENT REACT-WINDOW (24px)
    ========================================================================== */
 .rt-tbody {
   flex: 1;
@@ -86,24 +86,26 @@
 .rt-row {
   display: flex;
   align-items: stretch;
-  height: 36px;
+  height: 24px;
   box-sizing: border-box;
   user-select: none;
   cursor: pointer;
   width: max-content !important;
   min-width: max-content !important;
+  font-size: 0.88rem;
 }
 
 .rt-row.rt-header {
   cursor: default;
-  height: 38px;
+  height: 30px;
+  font-size: 0.84rem;
 }
 
 /* ==========================================================================
-   DIMENSIONS STRICTES DES CELLULES
+   DIMENSIONS DES CELLULES COMPACTES
    ========================================================================== */
 .rt-cell {
-  padding: 0.5em;
+  padding: 0.15em 0.35em;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -119,10 +121,11 @@
   background-color: var(--c-bg1);
   color: var(--c-norge);
   z-index: 9;
-  min-width: 4.2em !important;
-  width: 4.2em !important;
-  flex: 0 0 4.2em !important;
+  min-width: 3.2em !important;
+  width: 3.2em !important;
+  flex: 0 0 3.2em !important;
   justify-content: flex-end;
+  font-size: 0.82rem;
 }
 
 .rt-thead .rt-cell.indexCol {
@@ -133,29 +136,30 @@
   content: "";
   display: block;
   position: absolute;
-  top: 0.2em;
-  bottom: 0.2em;
+  top: 0.15em;
+  bottom: 0.15em;
   left: 0;
   background-color: var(--risk-color);
-  width: 0.4em;
+  width: 0.3em;
 }
 
-/* 2. Colonne Commune (Alignée à gauche et surlignée) */
+/* 2. Colonne Commune (Nom en gras et troncature) */
 .rt-cell.kommuneCol {
   position: sticky;
-  left: 4.2em;
+  left: 3.2em;
   background-color: var(--c-bg1);
   z-index: 9;
-  min-width: 15em !important;
-  width: 15em !important;
-  flex: 0 0 15em !important;
+  min-width: 13em !important;
+  width: 13em !important;
+  flex: 0 0 13em !important;
   border-right: 1px solid rgba(0, 0, 0, 0.15) !important;
+  font-weight: 600;
 }
 
 .rt-thead .rt-cell.kommuneCol {
   z-index: 13;
   justify-content: flex-start !important;
-  padding-left: 0.5rem !important;
+  padding-left: 0.4rem !important;
 }
 
 .rt-thead .rt-cell.kommuneCol button {
@@ -167,22 +171,30 @@
   content: "";
   position: absolute;
   top: 0;
-  right: -0.3em;
-  width: 0.3em;
+  right: -0.25em;
+  width: 0.25em;
   bottom: 0;
   pointer-events: none;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0));
+}
+
+.kommuneNameText {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 3. Colonnes numériques standards */
 .rt-cell.numeric {
   text-align: right;
   justify-content: flex-end;
-  padding-right: 1rem;
-  min-width: 7rem !important;
-  width: 7rem !important;
-  flex: 0 0 7rem !important;
-  border-right: 1px solid rgba(0, 0, 0, 0.1) !important;
+  padding-right: 0.6rem;
+  min-width: 5.6rem !important;
+  width: 5.6rem !important;
+  flex: 0 0 5.6rem !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.08) !important;
 }
 
 .rt-thead .rt-cell.numeric {
@@ -192,11 +204,12 @@
 }
 
 .rt-thead .rt-cell.numeric button {
-  width: 7rem !important;
-  flex: 0 0 7rem !important;
-  font-size: 1rem !important;
-  line-height: 0.8rem;
+  width: 5.6rem !important;
+  flex: 0 0 5.6rem !important;
+  font-size: 0.82rem !important;
+  line-height: 0.9em;
   white-space: normal !important;
+  padding: 0.1em 0.2em;
 }
 
 .rt-thead .rt-cell {
@@ -204,7 +217,7 @@
 }
 
 /* ==========================================================================
-   COULEURS : LES 4 DÉTERMINANTS (ORANGE LÉGER - 8% & 15%)
+   COULEURS : DÉTERMINANTS (8% & 15%)
    ========================================================================== */
 .rt-cell.numeric.determinantCol {
   background-color: rgba(253, 141, 60, 0.08) !important;
@@ -212,7 +225,7 @@
 
 .rt-thead .rt-cell.numeric.determinantCol {
   background-color: rgba(253, 141, 60, 0.15) !important;
-  border-right: 1px solid rgba(0, 0, 0, 0.2) !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.18) !important;
 }
 
 .rt-thead .rt-cell.numeric.determinantCol button {
@@ -220,7 +233,7 @@
 }
 
 /* ==========================================================================
-   COULEURS : TOTAL RISK (ORANGE ACCENTUÉ - 18% & 28%)
+   COULEURS : TOTAL RISK (18% & 28%)
    ========================================================================== */
 .rt-cell.numeric.totalRiskCol {
   background-color: rgba(253, 141, 60, 0.18) !important;
@@ -235,7 +248,7 @@
 }
 
 /* ==========================================================================
-   SÉLECTIONS, HOVERS ET ACTIONS (RÈGLES DE PRIORITÉ VISUELLE)
+   SÉLECTIONS, HOVERS ET SURBRILLANCES
    ========================================================================== */
 .rt-cell.highlightedCol {
   background-color: var(--c-highlighted) !important;
@@ -245,7 +258,6 @@
   background-color: var(--c-bg3) !important;
 }
 
-/* Hover sur la ligne complète */
 .rt-row.highlighted,
 .rt-row.highlighted .indexCol,
 .rt-row.highlighted .kommuneCol,
@@ -254,7 +266,6 @@
   background-color: var(--c-highlighted) !important;
 }
 
-/* Ligne sélectionnée */
 .rt-row.selected,
 .rt-row.selected .indexCol,
 .rt-row.selected .kommuneCol,
@@ -263,7 +274,6 @@
   background-color: var(--c-selected) !important;
 }
 
-/* Cas spécifiques d'intersections actives */
 .rt-row.selected .highlightedCol,
 .rt-row.selected .selectedCol {
   background-color: var(--c-selected) !important;
@@ -271,35 +281,42 @@
 }
 
 /* ==========================================================================
-   CONTRÔLES D'AGRÉGATION SPATIALE
+   CONTRÔLES D'AGRÉGATION SPATIALE COMPACTS
    ========================================================================== */
 .aggregation-controls {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  gap: 0.35rem;
+  padding: 0.25rem 0.6rem;
   background-color: var(--c-bg2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 .agg-label {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.3rem;
   color: var(--c-text-muted, #666);
   font-weight: 500;
-  margin-right: 0.5rem;
+  margin-right: 0.3rem;
+}
+
+.agg-label svg {
+  width: 14px;
+  height: 14px;
 }
 
 .agg-btn {
   background: var(--c-bg1);
   border: 1px solid rgba(0, 0, 0, 0.15);
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
   cursor: pointer;
   color: var(--c-text);
-  transition: all 0.2s ease;
+  font-size: 0.78rem;
+  line-height: 1.1;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .agg-btn:hover {
@@ -310,6 +327,6 @@
   background: var(--c-accent, #fb6a4a);
   color: white;
   border-color: transparent;
-  font-weight: bold;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-weight: 600;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.12);
 }

@@ -1,7 +1,8 @@
-import './App.css'
+import './App.css';
 import { useEffect, useState } from 'react';
-import useDataStore from './hooks/useDataStore'
-import Map from './components/map/Map'
+import { Routes, Route } from 'react-router-dom';
+import useDataStore from './hooks/useDataStore';
+import Map from './components/map/Map';
 import DistributionChart from './components/chart/DistributionChart';
 import RiskTree from './components/RiskTree';
 import RiskTable from './components/RiskTable';
@@ -9,14 +10,13 @@ import DetailedStats from './components/details/DetailedStats';
 import useLanguageStore, { t } from './hooks/useLanguageStore';
 import Header from './components/header/Header';
 import Panel from './components/Panel';
+import ReportPage from './pages/ReportPage';
 
 type LoadingScreenProps = {
   progress: number;
 };
 
-// Composant de l'écran avec barre de progression réelle adapté aux deux langues
 function LoadingScreen({ progress }: LoadingScreenProps) {
-  // 🎯 AJOUTÉ : Utilisation de la méthode de traduction du store
   const l = useLanguageStore((state) => state.l);
 
   return (
@@ -26,14 +26,14 @@ function LoadingScreen({ progress }: LoadingScreenProps) {
         <p style={styles.subtitle}>
           {l({
             fr: `Chargement des indicateurs de risque climatique... (${progress}%)`,
-            en: `Loading of climate risk indicators... (${progress}%)`
+            en: `Loading of climate risk indicators... (${progress}%)`,
           })}
         </p>
         <div style={styles.progressContainer}>
           <div
             style={{
               ...styles.progressBar,
-              width: `${progress}%`, 
+              width: `${progress}%`,
             }}
           />
         </div>
@@ -42,58 +42,9 @@ function LoadingScreen({ progress }: LoadingScreenProps) {
   );
 }
 
-function App() {
-  const {
-    fetchData,
-    selectedDistribution,
-    layout,
-  } = useDataStore();
+function Dashboard() {
+  const { selectedDistribution, layout } = useDataStore();
   const { l } = useLanguageStore();
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
-
-  // Gestion de la progression réelle de l'initialisation
-  useEffect(() => {
-    async function initializeApp() {
-      try {
-        // Étape 1 : Démarrage du script d'initialisation
-        setProgress(15);
-
-        // Étape 2 : Simulation rapide de la connexion aux fichiers de données distants
-        await new Promise((resolve) => setTimeout(resolve, 300));
-        setProgress(40);
-
-        // Étape 3 : Exécution de la fonction fetchData() du store (chargement des JSON/GeoJSON)
-        await fetchData();
-        setProgress(85);
-
-        // Étape 4 : Finalisation du rendu des composants lourds (cartes, graphiques)
-        await new Promise((resolve) => setTimeout(resolve, 200));
-        setProgress(100);
-
-        // Petite pause à 100% pour une transition visuelle fluide
-        await new Promise((resolve) => setTimeout(resolve, 150));
-      } catch (error) {
-        console.error("Erreur lors du chargement des données de risques :", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    initializeApp();
-  }, [fetchData]);
-
-  // 🎯 IMPOSER LE MODE ORDINATEUR SUR TOUS LES ÉCRANS MOBILES
-  useEffect(() => {
-    const viewport = document.querySelector('meta[name="viewport"]');
-    if (viewport) {
-      viewport.setAttribute('content', 'width=1200, initial-scale=0.3, maximum-scale=3.0');
-    }
-  }, []);
-
-  if (isLoading) {
-    return <LoadingScreen progress={progress} />;
-  }
 
   return (
     <>
@@ -140,10 +91,57 @@ function App() {
         </Panel>
       </div>
     </>
-  )
+  );
 }
 
-// Styles CSS-in-JS mis à jour (sans animation infinie)
+function App() {
+  const { fetchData } = useDataStore();
+  const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    async function initializeApp() {
+      try {
+        setProgress(15);
+        await new Promise((resolve) => setTimeout(resolve, 300));
+        setProgress(40);
+
+        await fetchData();
+        setProgress(85);
+
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        setProgress(100);
+
+        await new Promise((resolve) => setTimeout(resolve, 150));
+      } catch (error) {
+        console.error("Erreur lors du chargement des données de risques :", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    initializeApp();
+  }, [fetchData]);
+
+  useEffect(() => {
+    const viewport = document.querySelector('meta[name="viewport"]');
+    if (viewport) {
+      viewport.setAttribute('content', 'width=1200, initial-scale=0.3, maximum-scale=3.0');
+    }
+  }, []);
+
+  if (isLoading) {
+    return <LoadingScreen progress={progress} />;
+  }
+
+  return (
+    <Routes>
+      <Route path="/" element={<Dashboard />} />
+      <Route path="/report" element={<ReportPage />} />
+      <Route path="*" element={<Dashboard />} />
+    </Routes>
+  );
+}
+
 const styles = {
   container: {
     display: 'flex',

@@ -56,6 +56,10 @@
         "fr": "Aléa",
         "en": "Hazard"
       },
+      "description": {
+        "fr": "Occurrence potentielle d'un événement physique d'origine climatique pouvant causer des dommages.",
+        "en": "Potential occurrence of a climate-induced physical event that may cause damage or loss."
+      },
       "indicators": [
         {
           "key": "hFlood",
@@ -63,7 +67,23 @@
             "fr": "Inondation",
             "en": "Flooding"
           },
+          "description": {
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau, multipliée par un facteur d'augmentation des précipitations extrêmes.",
+            "en": "Proportion of the municipality area covered by a river flooding risk, multiplied by a factor of rainfall intensity increase."
+          },
           "col_name": "hFloodRef_0_100"
+        },
+        {
+          "key": "hFloodeaip",
+          "name": {
+            "fr": "Inondation (EAIP)",
+            "en": "Flooding (EAIP)"
+          },
+          "description": {
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau (Enveloppe Approchée des Inondations Potentielles), multipliée par un facteur d'augmentation des précipitations extrêmes.",
+            "en": "Proportion of the municipality area covered by a river flooding risk (EAIP), multiplied by a factor of rainfall intensity increase."
+          },
+          "col_name": "hFloodeaipRef_0_100"
         },
         {
           "key": "hSubm",
@@ -71,7 +91,35 @@
             "fr": "Submersion",
             "en": "Storm Surge"
           },
+          "description": {
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par submersion marine, multipliée par un facteur d'élévation du niveau de la mer.",
+            "en": "Proportion of the municipality area covered by a storm surge risk, multiplied by a factor of sea-level rise."
+          },
           "col_name": "hSubmRef_0_100"
+        },
+        {
+          "key": "hSubmeaip",
+          "name": {
+            "fr": "Submersion (EAIP)",
+            "en": "Storm Surge (EAIP)"
+          },
+          "description": {
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par submersion marine (EAIP), multipliée par un facteur d'élévation du niveau de la mer.",
+            "en": "Proportion of the municipality area covered by a storm surge risk (EAIP), multiplied by a factor of sea-level rise."
+          },
+          "col_name": "hSubmeaipRef_0_100"
+        },
+        {
+          "key": "hErosion",
+          "name": {
+            "fr": "Érosion côtière",
+            "en": "Coastal Erosion"
+          },
+          "description": {
+            "fr": "Indicateur national d'érosion côtière.",
+            "en": "National indicator for coastal erosion."
+          },
+          "col_name": "hErosionRef_0_100"
         },
         {
           "key": "hHeat",
@@ -79,7 +127,23 @@
             "fr": "Canicule",
             "en": "Heatwave"
           },
+          "description": {
+            "fr": "Nombre de jours très chauds par an.",
+            "en": "Number of very hot days per year."
+          },
           "col_name": "hHeatRef_0_100"
+        },
+        {
+          "key": "hDrought",
+          "name": {
+            "fr": "Sécheresse",
+            "en": "Drought"
+          },
+          "description": {
+            "fr": "Nombre de jours avec un sol sec.",
+            "en": "Number of days with a dry soil."
+          },
+          "col_name": "hDroughtRef_0_100"
         },
         {
           "key": "hSsc",
@@ -87,13 +151,21 @@
             "fr": "Retrait-Gonflement des Argiles",
             "en": "Shrinkage-Swelling of Clays"
           },
+          "description": {
+            "fr": "Part de la surface communale avec un risque identifié de RGA, multiplié par un facteur d'augmentation de l'intensité de la sécheresse.",
+            "en": "Proportion of the municipality area with identified shrinkage-swelling risk, multiplied by a factor of drought intensity increase."
+          },
           "col_name": "hSscRef_0_100"
         },
-                {
+        {
           "key": "hCycl",
           "name": {
             "fr": "Cyclone",
             "en": "Cyclone"
+          },
+          "description": {
+            "fr": "Variation dans l'intensité des cyclones tropicaux.",
+            "en": "Variation in the intensity of tropical cyclones."
           },
           "col_name": "hCyclRef_0_100"
         },
@@ -103,23 +175,47 @@
             "fr": "Feux de forêt",
             "en": "Wildfire"
           },
+          "description": {
+            "fr": "Nombre de jours avec un risque significatif de feux de forêt.",
+            "en": "Number of days with a significant risk of forest fires."
+          },
           "col_name": "hWildfRef_0_100"
+        },
+        {
+          "key": "hSnowresorts",
+          "name": {
+            "fr": "Réduction de l'enneigement",
+            "en": "Snow cover reduction"
+          },
+          "description": {
+            "fr": "Évalue le risque d'enneigement en pondérant l'aléa physique par le poids de la station dans l'économie communale.",
+            "en": "Assesses snow reduction risk by weighting climate hazard with the ski resort's local economic weight."
+          },
+          "col_name": "hSnowresortsRef_0_100"
         },
         {
           "key": "hSnow",
           "name": {
-            "fr": "Réduction du manteau neigeux",
-            "en": "Snow cover reduction"
+            "fr": "Réduction de l'enneigement (aléa brut)",
+            "en": "Snow cover reduction (raw hazard)"
+          },
+          "description": {
+            "fr": "Mesure l'aléa physique brut de perte d'enneigement, sans pondération économique.",
+            "en": "Measures raw physical snowpack decline, without local economic weighting."
           },
           "col_name": "hSnowRef_0_100"
-        }        
+        }
       ]
     },
     {
-      "key": "s",
+      "key": "v",
       "name": {
         "en": "Vulnerability",
         "fr": "Vulnérabilité"
+      },
+      "description": {
+        "fr": "Prédispositions socio-économiques à subir des effets préjudiciables.",
+        "en": "Socio-economic predispositions to be adversely affected."
       },
       "indicators": [
         {
@@ -127,6 +223,10 @@
           "name": {
             "fr": "Age",
             "en": "Age"
+          },
+          "description": {
+            "fr": "Part de la population âgée de plus de 65 ans et de moins de 15 ans.",
+            "en": "Share of the population older than 65 years old and younger than 15 years old."
           },
           "col_name": "vAge_0_100"
         },
@@ -136,6 +236,10 @@
             "fr": "Secteur primaire",
             "en": "Primary sector"
           },
+          "description": {
+            "fr": "Part de l'emploi dans le secteur primaire.",
+            "en": "Share of the employment in the primary sector."
+          },
           "col_name": "vPrim_0_100"
         },
         {
@@ -143,6 +247,10 @@
           "name": {
             "fr": "Richesse",
             "en": "Wealth"
+          },
+          "description": {
+            "fr": "Revenu médian.",
+            "en": "Median income."
           },
           "col_name": "vWealth_0_100"
         }
@@ -154,12 +262,20 @@
         "en": "Exposure",
         "fr": "Exposition"
       },
+      "description": {
+        "fr": "Présence de personnes, d'infrastructures et d'écosystèmes.",
+        "en": "Presence of people, infrastructure, and ecosystems."
+      },
       "indicators": [
         {
           "key": "eBiodiv",
           "name": {
             "fr": "Biodiversité",
             "en": "Biodiversity"
+          },
+          "description": {
+            "fr": "Proportion de la surface communale avec un statut de zone naturelle protégée.",
+            "en": "Proportion of the municipal surface with a status of protected area."
           },
           "col_name": "eBiodiv_0_100"
         },
@@ -169,6 +285,10 @@
             "fr": "Population",
             "en": "Population"
           },
+          "description": {
+            "fr": "Densité de population.",
+            "en": "Population density."
+          },
           "col_name": "ePop_0_100"
         },
         {
@@ -176,6 +296,10 @@
           "name": {
             "fr": "Bâtiments",
             "en": "Buildings"
+          },
+          "description": {
+            "fr": "Nombre de maisons menacées par les inondations, les submersions et le RGA.",
+            "en": "Number of houses threatened by flooding, storm surges and Shrinkage-Swelling of Clays."
           },
           "col_name": "eBuild_0_100"
         }
@@ -188,8 +312,8 @@
         "fr": "Réponse"
       },
       "description": {
-        "fr": "Efforts de la commune s'adapter au changement climatique.",
-        "en": "Municipality's efforts in adaptating to climate change."
+        "fr": "Mesure des efforts de la commune pour faire face aux problèmes climatiques.",
+        "en": "Measure of municipality's efforts in fighting climate issues."
       },
       "indicators": [
         {
@@ -198,6 +322,10 @@
             "fr": "Planification",
             "en": "Planning"
           },
+          "description": {
+            "fr": "Existence d'un plan d'adaptation local (PCAET).",
+            "en": "Existence of a local adaptation plan (PCAET)."
+          },
           "col_name": "rPlan_0_100"
         },
         {
@@ -205,6 +333,10 @@
           "name": {
             "fr": "Ressources",
             "en": "Resources"
+          },
+          "description": {
+            "fr": "Nombre de demandes de subventions au Fonds Vert pour des projets d'adaptation.",
+            "en": "Number of applications to the Green fund for adaptation projects."
           },
           "col_name": "rResour_0_100"
         }

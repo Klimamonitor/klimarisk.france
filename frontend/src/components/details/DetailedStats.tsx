@@ -34,26 +34,28 @@ export type RankMetric = {
   description?: Record<Language, string>;
   key: MetricKey;
   invert?: boolean;
-  rank: number;
-  rankFylke: number;
-}
+  rank: number | null;
+  rankFylke: number | null;
+};
+
 export type RankElement = {
   name: Record<Language, string>;
   description?: Record<Language, string>;
   key: ElementKey;
   invert?: boolean;
-  rank: number;
-  rankFylke: number;
+  rank: number | null;
+  rankFylke: number | null;
   metrics: RankMetric[];
-}
+};
+
 export type RankRisk = {
   name: Record<Language, string>;
-  rank: number;
-  rankFylke: number;
-  totalCount: number;      // 🎯 AJOUTÉ : Nombre d'entités total (échelle nationale)
-  totalCountFylke: number; // 🎯 AJOUTÉ : Nombre d'entités total (échelle départementale / locale)
+  rank: number | null;
+  rankFylke: number | null;
+  totalCount: number;
+  totalCountFylke: number;
   elements: RankElement[];
-}
+};
 
 function DetailedStats() {
   const {
@@ -82,31 +84,40 @@ function DetailedStats() {
     const fylkeRiskDist = getFylkeDistribution(selectedKommune, { type: "risk" }, selectedYear);
     if (!fylkeRiskDist) return null;
 
+    const riskVal = currentKommuneCache.totalRisk ?? 0;
+    const isZeroRisk = riskVal === 0;
+
     const tmp: RankRisk = {
       name: t.common.totalRisk,
-      rank: getDescendingRank(yearCache.byTotalRisk, currentKommuneCache.totalRisk),
-      rankFylke: getDescendingRank(fylkeRiskDist, currentKommuneCache.totalRisk),
-      totalCount: yearCache.byTotalRisk.length, // 🎯 AJOUTÉ : Extrait la taille de la distribution nationale
-      totalCountFylke: fylkeRiskDist.length,   // 🎯 AJOUTÉ : Extrait la taille de la distribution départementale
+      rank: isZeroRisk ? null : getDescendingRank(yearCache.byTotalRisk, riskVal),
+      rankFylke: isZeroRisk ? null : getDescendingRank(fylkeRiskDist, riskVal),
+      totalCount: yearCache.byTotalRisk.length,
+      totalCountFylke: fylkeRiskDist.length,
       elements: dataModel.elements.filter(e => !e.disabled).map(e => {
         const fylkeElementDist = getFylkeDistribution(selectedKommune, { type: "element", key: e.key }, selectedYear) || [];
+        const elemVal = currentKommuneCache[e.key] ?? 0;
+        const isZeroElem = elemVal === 0;
+
         return {
           name: e.name,
           description: e.description,
           key: e.key,
           ...(e.invert ? { invert: true } : {}),
-          rank: getDescendingRank(yearCache.byElement[e.key] || [], currentKommuneCache[e.key] ?? 0, e.invert),
-          rankFylke: getDescendingRank(fylkeElementDist, currentKommuneCache[e.key] ?? 0, e.invert),
+          rank: isZeroElem ? null : getDescendingRank(yearCache.byElement[e.key] || [], elemVal, e.invert),
+          rankFylke: isZeroElem ? null : getDescendingRank(fylkeElementDist, elemVal, e.invert),
           metrics: e.metrics.filter(m => !m.disabled).map(m => {
             const fylkeMetricDist = getFylkeDistribution(selectedKommune, { type: "metric", key: m.key }, selectedYear) || [];
             const isInvertedMetric = !!m.invert !== !!e.invert;
+            const metricVal = currentKommuneData[m.key] ?? 0;
+            const isZeroMetric = metricVal === 0;
+
             return {
               name: m.name,
               description: m.description,
               key: m.key,
               ...(isInvertedMetric ? { invert: true } : {}),
-              rank: getDescendingRank(yearData.byMetric[m.key] || [], currentKommuneData[m.key] ?? 0, isInvertedMetric),
-              rankFylke: getDescendingRank(fylkeMetricDist, currentKommuneData[m.key] ?? 0, isInvertedMetric)
+              rank: isZeroMetric ? null : getDescendingRank(yearData.byMetric[m.key] || [], metricVal, isInvertedMetric),
+              rankFylke: isZeroMetric ? null : getDescendingRank(fylkeMetricDist, metricVal, isInvertedMetric)
             };
           }),
         };
@@ -135,17 +146,13 @@ function DetailedStats() {
   }, [selectedKommune, aggregationLevel, rawData, selectedYear]);
 
   if (!yearData || !yearCache || !dataModel) {
-    return (
-      <div>{l(t.common.loading)}</div>
-    );
+    return <div>{l(t.common.loading)}</div>;
   }
 
   return (
     <div className="detailsList">
       {!selectedKommune || !ranks ? (
-        <div>
-          {l(t.details.selectSomething)}
-        </div>
+        <div>{l(t.details.selectSomething)}</div>
       ) : (
         <DetailsRisk r={ranks} countyName={currentCountyLabel} />
       )}

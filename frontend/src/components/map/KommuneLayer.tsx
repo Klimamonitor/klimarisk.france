@@ -211,7 +211,6 @@ function KommuneLayer({ setIsLoading }: KommuneLayerProps) { // 🎯 AJOUTÉ : P
             checked={showDeptBorders}
             onChange={(e) => setShowDeptBorders(e.target.checked)}
           />
-          {/* 🎯 TRADUIT : Application de la fonction l() du store */}
           <span className="controlLabelText">
             {l({ fr: 'Départements', en: 'Departments' })}
           </span>
@@ -222,7 +221,6 @@ function KommuneLayer({ setIsLoading }: KommuneLayerProps) { // 🎯 AJOUTÉ : P
             checked={showRegBorders}
             onChange={(e) => setShowRegBorders(e.target.checked)}
           />
-          {/* 🎯 TRADUIT : Application de la fonction l() du store */}
           <span className="controlLabelText">
             {l({ fr: 'Régions', en: 'Regions' })}
           </span>

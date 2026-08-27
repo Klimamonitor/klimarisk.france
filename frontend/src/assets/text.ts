@@ -60,16 +60,16 @@ const text = {
       en: "Data Table",
       fr: "Tableau de Données",
       tooltip: {
-        en: "This table displays the values associated with municipalities and the mean of the municipalities within intermunicipalities and departments. The values ​are normalized  from 0 to 100. Detailed indicators are available in 'Municipality Analysis' mode.",
-        fr: "Ce tableau présente les valeurs associées aux communes et la moyenne des valeurs des municipalitiés au sein des EPCI et départements sélectionnée. Les valeurs des sont normalisées de 0 à 100. Le détail des indicateurs est disponible en mode 'Analyse de la commune'.",
+        en: "This table displays the values associated with municipalities and the mean of the municipalities within intermunicipalities and departments. The values ​are normalized from 0 to 100. Detailed indicators are available in 'Municipality Analysis' mode.",
+        fr: "Ce tableau présente les valeurs associées aux communes et la moyenne des valeurs des municipalitiés au sein des EPCI et départements sélectionnée. Les valeurs  sont normalisées de 0 à 100. Le détail des indicateurs est disponible en mode 'Analyse de la commune'.",
       },
     },
     details: {
       en: "Ranking",
       fr: "Classement",
       tooltip: {
-        en: "This panel shows the selected municipalities/intermunicipalities/departments' rankings for all determinants and indicators. The rankings are displayed both nationally and within the entity's department. A ranking of 1 means the entity has the highest climate risk for that metric within the selected group, so lower ranking numbers indicate higher relative risk. The determinants are sorted by their contribution to the total risk, while the indicators within each determinant are sorted by their contribution to that determinant.",
-        fr: "Ce paneau affiche les classements de la commune/EPCI/département sélectionnée pour tous les déterminants et indicateurs. Les classements sont affichés au niveau national et départemental. Un classement de 1 signifie que la commune a le risque climatique le plus élevé pour ce indicateur au sein du groupe sélectionné, ainsi, des numéros de classement plus bas indiquent un risque relatif plus élevé. Les déterminants sont triés par leur contribution au risque total, tandis que les indicateurs au sein de chaque déterminant sont triés par leur contribution à ce déterminant.",
+        en: "This panel shows the selected municipalities/intermunicipalities/departments' rankings for all determinants and indicators in comparison to the other entities in the nation and their department. A ranking of 1 means the entity has the highest climate risk for that metric within the selected group, so lower ranking numbers indicate higher relative risk. The determinants are sorted by their contribution to the total risk, while the indicators within each determinant are sorted by their contribution to that determinant.",
+        fr: "Ce paneau affiche les classements de la commune/EPCI/département sélectionnée pour tous les déterminants et indicateurs par rapport aux autres entités de France et de son département. Un classement de 1 signifie que la commune a le risque climatique le plus élevé pour ce indicateur au sein du groupe sélectionné, ainsi, des numéros de classement plus bas indiquent un risque relatif plus élevé. Les déterminants sont triés par leur contribution au risque total, tandis que les indicateurs au sein de chaque déterminant sont triés par leur contribution à ce déterminant.",
       },
     },
   },
@@ -150,15 +150,129 @@ const text = {
     },
     tooltip: {
       norge: {
-        en: "The number represents the selected municipalities/intermunicipalities/departments' placement among all entities in the nation. Ranking number 1 means the selected etntity is the worst, with no other having a worse value.",
+        en: "The number represents the selected municipalities/intermunicipalities/departments' placement among all entities in the nation. Ranking number 1 means the selected entity is the worst, with no other having a worse value.",
         fr: "Le nombre représente la position de l'entité sélectionnée parmi toutes les communes/EPCI/départements dans le pays. Un classement de 1 signifie que l'entité sélectionnée est la plus mauvaise, sans autres entités ayant une valeur plus mauvaise.",
       },
       fylke: {
         en: "The number represents the selected municipalities/intermunicipalities/departments' placement among all entities in its own department. Ranking number 1 means the selected entity is the worst in its department, with no other entities in the department having a worse value.",
         fr: "Le nombre représente la position de l'entité sélectionnée parmi toutes les communes/EPCI/départements dans le département de l'entité sélectionnée. Un classement de 1 signifie que l'entité sélectionnée est la plus mauvaise dans son département, sans autres entités dans le département ayant une valeur plus mauvaise.",
       },
-    }
+    },
+    generateReport: {
+      en: "Generate Report",
+      fr: "Générer un rapport",
+    },
   },
-};
+  report: {
+    title: {
+      en: "Climate risk report",
+      fr: "Rapport de risque climatique",
+    },
+    viewer: {
+      generating: {
+        en: "Generating report...",
+        fr: "Génération du rapport...",
+      },
+      error: {
+        en: "Could not generate report.",
+        fr: "Impossible de générer le rapport.",
+      },
+    },
+    selectMunicipality: {
+      en: "Select municipality",
+      fr: "Sélectionner une commune",
+    },
+    selectMunicipalityDescription: {
+      en: "Select the municipality you want to generate a report for.",
+      fr: "Sélectionnez la commune pour laquelle vous souhaitez générer un rapport.",
+    },
+    selectYear: {
+      en: "Select time period",
+      fr: "Sélectionner une période temporelle",
+    },
+    selectYearDescription: {
+      en: "Select the time period you want to generate a report for.",
+      fr: "Sélectionnez la période temporelle pour laquelle vous souhaitez générer un rapport.",
+    },
+    download: {
+      download: {
+        en: "Download report",
+        fr: "Télécharger le rapport",
+      },
+      generating: {
+        en: "Generating report",
+        fr: "Génération du rapport",
+      },
+      fileName: {
+        en: "municipality-climate-risk-report.pdf",
+        fr: "rapport-de-risque-climatique-de-la-commune.pdf",
+      },
+    },
+    document: {
+      urlLabel: {
+        en: "Detailed description:",
+        fr: "Description détaillée:",
+      },
+      score: {
+        en: "Score:",
+        fr: "Note:",
+      },
+      ranked: {
+        p1: {
+          en: "Ranked",
+          fr: "Classé",
+        },
+        p2: {
+          en: "out of",
+          fr: "sur",
+        },
+        p3: {
+          en: "municipalities in",
+          fr: "communes dans",
+        },
+        norge: {
+          en: "France",
+          fr: "France",
+        },
+        fylke: {
+          en: "its department",
+          fr: "son département",
+        },
+        p4: {
+          en: "(1 = highest climate risk)",
+          fr: "(1 = risque climatique le plus élevé)",
+        },
+      },
+      titlePage: {
+        chosenKommune: {
+          en: "Selected municipality:",
+          fr: "Commune sélectionnée:",
+        },
+        chosenYear: {
+          en: "Selected time period:",
+          fr: "Période temporelle sélectionnée:",
+        },
+      },
+      undefinedIndicator: {
+        en: "The municipality has not received a score for this indicator.",
+        fr: "La commune n'a pas reçu de note pour cet indicateur.",
+      },
+      documentationPage: {
+        title: {
+          en: "Documentation",
+          fr: "Documentation",
+        },
+      },
+      interpretationTitle: {
+        en: "Interpretation of the indicators",
+        fr: "Interprétation des indicateurs",
+      },
+      interpretationText: {
+        en: "The risk indicators presented in this document are evaluated relative to the scale of all municipalities in France. They allow you to situate this territory at the national level and do not constitute an absolute measure of local impacts. You can find the detailed methodology behind the development of the indicators at this address: https://www.vestforsk.no/nn/publication/development-comprehensive-climate-risk-ranking-french-municipalities.",
+        fr: "Les indicateurs de risque présentés dans ce document sont évalués de manière relative à l'échelle de l'ensemble des communes de France. Ils permettent de situer ce territoire au niveau national et ne constituent pas une mesure absolue des impacts locaux. Vous pouvez trouver la  métholodogie détaillée derrière l'élaboration des indicateurs à cette adresse : https://www.vestforsk.no/nn/publication/development-comprehensive-climate-risk-ranking-french-municipalities.",
+      },
+    },  
+  },
+} as const;
 
 export default text;

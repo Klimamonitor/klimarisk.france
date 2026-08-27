@@ -6,6 +6,13 @@ import useLanguageStore, { t } from "../hooks/useLanguageStore";
 import Tooltip from "./Tooltip";
 import { MoveDown as ArrowDown, MoveUp as ArrowUp, Layers } from "lucide-react";
 
+// Variantes pour empêcher les doublons de colonnes alternatives
+const METRIC_VARIANTS: Record<string, string[]> = {
+  "hSnowresorts": ["hSnow"],
+  "hFlood": ["hFloodeaip"],
+  "hSubm": ["hSubmeaip"]
+};
+
 const DEPARTEMENTS_MAP: Record<string, string> = {
   "01": "Ain", "02": "Aisne", "03": "Allier", "04": "Alpes-de-Haute-Provence", "05": "Hautes-Alpes",
   "06": "Alpes-Maritimes", "07": "Ardèche", "08": "Ardennes", "09": "Ariège", "10": "Aube",
@@ -86,7 +93,7 @@ function RiskTable() {
 
     return dataModel.elements.filter(e => !e.disabled).flatMap(e => {
       const elementHeader = {
-        key: e.key,
+        key: String(e.key),
         name: e.name,
         description: e.description,
         isDeterminant: true,
@@ -94,8 +101,22 @@ function RiskTable() {
       };
 
       if (layout === "second") {
-        const metricsHeaders = e.metrics.filter(m => !m.disabled).map(m => ({
-          key: m.key,
+        let activeMetrics = e.metrics.filter(m => !m.disabled);
+
+        Object.entries(METRIC_VARIANTS).forEach(([parentKey, variants]) => {
+          const isParentActive = activeMetrics.some(m => String(m.key) === parentKey);
+          if (isParentActive) {
+            activeMetrics = activeMetrics.filter(m => !variants.includes(String(m.key)));
+          } else {
+            const activeVariant = activeMetrics.find(m => variants.includes(String(m.key)));
+            if (activeVariant) {
+              activeMetrics = activeMetrics.filter(m => !variants.includes(String(m.key)) || String(m.key) === String(activeVariant.key));
+            }
+          }
+        });
+
+        const metricsHeaders = activeMetrics.map(m => ({
+          key: String(m.key),
           name: m.name,
           description: m.description,
           isDeterminant: false,
@@ -106,10 +127,12 @@ function RiskTable() {
 
       return [elementHeader];
     });
-  }, [dataModel, layout]);
+  }, [dataModel, layout, cache]);
 
   const rows = useMemo(() => {
     if (!data || !cache || !dataModel || !selectedYear) return [];
+
+    const activeMetricKeys = headers.filter(h => !h.isDeterminant).map(h => h.key);
 
     const tmp = Object.keys(data.years[selectedYear].byKommune).map(k => {
       const kommuneData = data.years[selectedYear].byKommune[k as KommuneNr];
@@ -122,13 +145,23 @@ function RiskTable() {
         displayName = DEPARTEMENTS_MAP[deptCode] || displayName;
       }
 
-      return {
+      const rowData: Record<string, any> = {
         name: displayName,
         komNr: k as KommuneNr,
-        totalRisk: kommuneCache.totalRisk as number,
-        ...Object.fromEntries(dataModel.elements.map(e => [e.key, kommuneCache[e.key]])),
-        ...layout === "second" ? Object.fromEntries(dataModel.elements.flatMap(e => e.metrics.map(m => [m.key, kommuneData[m.key]]))) : {},
+        totalRisk: kommuneCache?.totalRisk as number,
+      };
+
+      dataModel.elements.forEach(e => {
+        rowData[String(e.key)] = kommuneCache?.[String(e.key)];
+      });
+
+      if (layout === "second") {
+        activeMetricKeys.forEach(mKey => {
+          rowData[mKey] = kommuneData[mKey];
+        });
       }
+
+      return rowData;
     });
 
     return tmp as {
@@ -137,7 +170,7 @@ function RiskTable() {
       totalRisk: number;
       [key: string]: string | number;
     }[];
-  }, [data, cache, dataModel, selectedYear, layout, aggregationLevel]);
+  }, [data, cache, dataModel, selectedYear, layout, aggregationLevel, headers]);
 
   const rowsSorted = useMemo(() => {
     return [...rows].sort((a, b) => {
@@ -245,7 +278,7 @@ function RiskTable() {
           {index + 1}
         </div>
         <div className="rt-cell kommuneCol">
-          {row.name}
+          <span className="kommuneNameText">{row.name}</span>
         </div>
         <div className={`rt-cell numeric totalRiskCol ${highlightedDistribution && highlightedDistribution.type === "risk" ? "highlightedCol" : ""} ${selectedDistribution.type === "risk" ? "selectedCol" : ""}`}>
           {renderValue(row.totalRisk)}
@@ -253,7 +286,7 @@ function RiskTable() {
         {headers.map((header, headerIndex) => (
           <div
             key={`${index}-${headerIndex}`}
-            className={`rt-cell numeric ${header.isDeterminant ? 'determinantCol' : ''} ${(highlightedDistribution && highlightedDistribution?.type !== "risk" && highlightedDistribution.key === header.key) ? "highlightedCol" : ""} ${selectedDistribution.type !== "risk" && selectedDistribution.key === header.key ? "selectedCol" : ""}`}
+            className={`rt-cell numeric ${header.isDeterminant ? 'determinantCol' : ''} ${(highlightedDistribution && highlightedDistribution?.type !== "risk" && String(highlightedDistribution.key) === header.key) ? "highlightedCol" : ""} ${selectedDistribution.type !== "risk" && String(selectedDistribution.key) === header.key ? "selectedCol" : ""}`}
           >
             {renderValue(row[header.key])}
           </div>
@@ -262,7 +295,6 @@ function RiskTable() {
     );
   };
 
-  // Résolution contextuelle de l'en-tête textuel selon l'échelle territoriale active
   const getTableHeaderName = () => {
     if (aggregationLevel === "commune") return l(t.table.kommune);
     if (aggregationLevel === "epci") return "EPCI";
@@ -285,7 +317,14 @@ function RiskTable() {
           className={`agg-btn ${aggregationLevel === "epci" ? "active" : ""}`}
           onClick={() => setAggregationLevel("epci")}
         >
-          EPCI
+          <Tooltip
+            text={l({
+              fr: "Établissement public de coopération intercommunale : agglomération, communauté de communes, métropoles...",
+              en: "Public establishment for intercommunal cooperation : agglomeration, community of municipalities, metropolises..."
+            })}
+          >
+            EPCI
+          </Tooltip>
         </button>
         <button
           className={`agg-btn ${aggregationLevel === "departement" ? "active" : ""}`}
@@ -321,11 +360,11 @@ function RiskTable() {
             {headers.map((header, index) => (
               <div
                 key={index}
-                className={`rt-cell numeric ${header.isDeterminant ? 'determinantCol' : ''} ${highlightedDistribution && highlightedDistribution?.type !== "risk" && highlightedDistribution.key === header.key ? "highlightedCol" : ""} ${selectedDistribution.type !== "risk" && selectedDistribution.key === header.key ? "selectedCol" : ""}`}
-                ref={selectedDistribution.type !== "risk" && selectedDistribution.key === header.key ? selectedColRef : null}
+                className={`rt-cell numeric ${header.isDeterminant ? 'determinantCol' : ''} ${highlightedDistribution && highlightedDistribution?.type !== "risk" && String(highlightedDistribution.key) === header.key ? "highlightedCol" : ""} ${selectedDistribution.type !== "risk" && String(selectedDistribution.key) === header.key ? "selectedCol" : ""}`}
+                ref={selectedDistribution.type !== "risk" && String(selectedDistribution.key) === header.key ? selectedColRef : null}
               >
                 <button type="button" onClick={() => handleSort(header.key, header.invert)}>
-                  <Tooltip text={l(header.description)}>
+                  <Tooltip text={header.description ? l(header.description) : undefined}>
                     {l(header.name)}
                   </Tooltip>
                   <div className="sortIcon">

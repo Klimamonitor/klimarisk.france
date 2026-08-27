@@ -168,3 +168,26 @@ header h1 a:hover {
     height: 1.1em !important;
     width: 1.1em !important;
 }
+
+.reportButton {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.reportButton>a {
+    display: flex;
+    padding: 0 .8rem 0 .7rem;
+    height: var(--header-height);
+    color: var(--c-text);
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: var(--font-weight-medium);
+}
+
+.reportButton>a:hover {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--c-text);
+}

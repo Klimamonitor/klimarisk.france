@@ -18,8 +18,19 @@
             "en": "Flooding"
           },
           "description": {
-            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau, multipliée par un d'augmentation des précipitations extrêmes.",
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau, multipliée par un facteur d'augmentation des précipitations extrêmes.",
             "en": "Proportion of the municipality area covered by a river flooding risk, multiplied by a factor of rainfall intensity increase."
+          }
+        },
+        {
+          "key": "hFloodeaip",
+          "name": {
+            "fr": "Inondation (EAIP)",
+            "en": "Flooding (EAIP)"
+          },
+          "description": {
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par débordement de cours d'eau (Enveloppe Approchée des Inondations Potentielles), multipliée par un facteur d'augmentation des précipitations extrêmes.",
+            "en": "Proportion of the municipality area covered by a river flooding risk (EAIP), multiplied by a factor of rainfall intensity increase."
           }
         },
         {
@@ -29,8 +40,30 @@
             "en": "Storm Surge"
           },
           "description": {
-            "fr": "Part de la superficie communale couverte par un risque d'inondation par un risque de submersion marine, multipliée par un facteur d'élévation du niveau de la mer",
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par submersion marine, multipliée par un facteur d'élévation du niveau de la mer.",
             "en": "Proportion of the municipality area covered by a storm surge risk, multiplied by a factor of sea-level rise."
+          }
+        },
+        {
+          "key": "hSubmeaip",
+          "name": {
+            "fr": "Submersion (EAIP)",
+            "en": "Storm Surge (EAIP)"
+          },
+          "description": {
+            "fr": "Part de la superficie communale couverte par un risque d'inondation par submersion marine (EAIP), multipliée par un facteur d'élévation du niveau de la mer.",
+            "en": "Proportion of the municipality area covered by a storm surge risk (EAIP), multiplied by a factor of sea-level rise."
+          }
+        },
+        {
+          "key": "hErosion",
+          "name": {
+            "fr": "Érosion côtière",
+            "en": "Coastal Erosion"
+          },
+          "description": {
+            "fr": "Indicateur national d'érosion côtière.",
+            "en": "National indicator for coastal erosion."
           }
         },
         {
@@ -40,8 +73,19 @@
             "en": "Heatwave"
           },
           "description": {
-            "fr": "Nombre de \"jours très chauds\" par an",
-            "en": "Number of \"very hot days\" per year."
+            "fr": "Nombre de jours très chauds par an.",
+            "en": "Number of very hot days per year."
+          }
+        },
+        {
+          "key": "hDrought",
+          "name": {
+            "fr": "Sécheresse",
+            "en": "Drought"
+          },
+          "description": {
+            "fr": "Nombre de jours avec un sol sec.",
+            "en": "Number of days with a dry soil."
           }
         },
         {
@@ -51,7 +95,7 @@
             "en": "Shrinkage-Swelling of Clays"
           },
           "description": {
-            "fr": "Part de la surface communale avec un risque identifié de RGA, multiplié par un facteur d'augmentation de l'intensité de la sécheresse",
+            "fr": "Part de la surface communale avec un risque identifié de RGA, multiplié par un facteur d'augmentation de l'intensité de la sécheresse.",
             "en": "Proportion of the municipality area with identified shrinkage-swelling risk, multiplied by a factor of drought intensity increase."
           }
         },
@@ -62,7 +106,7 @@
             "en": "Cyclone"
           },
           "description": {
-            "fr": "Variation dans l'intensité des cyclones tropicaux",
+            "fr": "Variation dans l'intensité des cyclones tropicaux.",
             "en": "Variation in the intensity of tropical cyclones."
           }
         },
@@ -73,25 +117,36 @@
             "en": "Wildfire"
           },
           "description": {
-            "fr": "Nombre de jour avec un risque significatif de feux de forêt",
+            "fr": "Nombre de jours avec un risque significatif de feux de forêt.",
             "en": "Number of days with a significant risk of forest fires."
+          }
+        },
+        {
+          "key": "hSnowresorts",
+          "name": {
+            "fr": "Réduction de l'enneigement",
+            "en": "Snow cover reduction"
+          },
+          "description": {
+            "fr": "Évalue le risque d'enneigement en pondérant l'aléa physique par le poids de la station dans l'économie communale.",
+            "en": "Assesses snow reduction risk by weighting climate hazard with the ski resort's local economic weight."
           }
         },
         {
           "key": "hSnow",
           "name": {
-            "fr": "Réduction du manteau neigeux",
-            "en": "Snow cover reduction"
+            "fr": "Réduction de l'enneigement (aléa brut)",
+            "en": "Snow cover reduction (raw hazard)"
           },
           "description": {
-            "fr": "Variation du nombre de jours enneigés à la plus haute altitude de la commune",
-            "en": "Variation in the number of snow-covered days at the highest altitude of the municipality."
+            "fr": "Mesure l'aléa physique brut de perte d'enneigement, sans pondération économique.",
+            "en": "Measures raw physical snowpack decline, without local economic weighting."
           }
         }
       ]
     },
     {
-      "key": "s",
+      "key": "v",
       "name": {
         "en": "Vulnerability",
         "fr": "Vulnérabilité"
@@ -130,8 +185,8 @@
             "en": "Wealth"
           },
           "description": {
-            "fr": "Revenu médian",
-            "en": "Median income"
+            "fr": "Revenu médian.",
+            "en": "Median income."
           }
         }
       ]
@@ -165,8 +220,8 @@
             "en": "Population"
           },
           "description": {
-            "fr": "Densité de population",
-            "en": "Population density"
+            "fr": "Densité de population.",
+            "en": "Population density."
           }
         },
         {
@@ -176,8 +231,8 @@
             "en": "Buildings"
           },
           "description": {
-            "fr": "Nombre de maisons menacées par les inondations, les submersions et le RGA",
-            "en": "Number of houses threatened by flooding, storm surges and SSC."
+            "fr": "Nombre de maisons menacées par les inondations, les submersions et le RGA.",
+            "en": "Number of houses threatened by flooding, storm surges and Shrinkage-Swelling of Clays."
           }
         }
       ]
@@ -211,8 +266,8 @@
             "en": "Resources"
           },
           "description": {
-            "fr": "Nombre de demandes de subventions au Fonds Vert pour des projets d'adaptation",
-            "en": "Number of applications to the Green fund for adaptation projects "
+            "fr": "Nombre de demandes de subventions au Fonds Vert pour des projets d'adaptation.",
+            "en": "Number of applications to the Green fund for adaptation projects."
           }
         }
       ]

@@ -1,0 +1,94 @@
+.dashboard {
+    height: var(--dashboard-height);
+    display: grid;
+    gap: var(--grid-gap);
+    padding-top: calc(var(--grid-gap) / 2);
+    padding-bottom: var(--grid-gap);
+    box-sizing: border-box;
+    transition:
+        grid-template-areas 0.5s,
+        grid-template-columns 0.5s,
+        /* grid-template-rows 0.5s,  */
+        padding-left 0.5s,
+        padding-right 0.5s;
+}
+
+.gridLayout1 {
+    grid-template-areas:
+        "tree map chart details"
+        "tree map table details";
+    grid-template-columns: min(18em, 30%) 3fr 2fr 0;
+    grid-template-rows: min(18em, 50%) minmax(40%, 2fr);
+    padding-left: var(--grid-gap);
+}
+
+.gridLayout2 {
+    grid-template-areas:
+        "tree map chart details"
+        "tree table table details";
+    grid-template-columns: 0 2fr 2fr min(32em, 50%);
+    grid-template-rows: 3fr 2fr;
+    padding-right: var(--grid-gap);
+}
+
+.panel {
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.5), 0 0 10px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--c-bg1);
+}
+
+.panel>h2 {
+    margin: 0;
+    font-size: 1em;
+    background-color: var(--c-bg4);
+    text-wrap: nowrap;
+    padding-left: .5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.panel>h2 div:has(svg) {
+    display: flex;
+}
+
+.panel>h2 svg {
+    height: 1.2em;
+}
+
+.panelScroll {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.panel.tree {
+    grid-area: tree;
+}
+
+.panel.map {
+    grid-area: map;
+}
+
+.panel.chart {
+    grid-area: chart;
+}
+
+.panel.table {
+    grid-area: table;
+}
+
+.panel.stats {
+    grid-area: stats;
+}
+
+.panel.details {
+    grid-area: details;
+}

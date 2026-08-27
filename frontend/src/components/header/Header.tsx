@@ -2,11 +2,16 @@ import './header.css';
 import YearSelect from './YearSelect';
 import LayoutSelect from './LayoutSelect';
 import LanguageSelect from './LanguageSelect';
+import ReportButton from './ReportButton';
 import Tooltip from '../Tooltip';
 import useLanguageStore from '../../hooks/useLanguageStore';
-import { HelpCircle } from 'lucide-react'; // Ajuste l'import selon ton composant d'icône (ex: HelpCircle, Help, etc.)
+import { HelpCircle } from 'lucide-react';
 
-function Header() {
+interface HeaderProps {
+  noControls?: boolean;
+}
+
+function Header({ noControls }: HeaderProps) {
   const l = useLanguageStore((state) => state.l);
 
   return (
@@ -30,10 +35,14 @@ function Header() {
         </Tooltip>
       </div>
 
-      <div className="headerControls">
-        <LayoutSelect />
-        <YearSelect />
-      </div>
+      {!noControls && (
+        <div className="headerControls">
+          <LayoutSelect />
+          <YearSelect />
+          <ReportButton />
+        </div>
+      )}
+
       <LanguageSelect />
     </header>
   );

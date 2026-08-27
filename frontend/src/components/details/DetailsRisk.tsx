@@ -70,13 +70,25 @@ function DetailsRisk({ r, countyName }: Props) {
         <div className="detailsName">
           {l(r.name)}
         </div>
-        {/* 🎯 MODIFIÉ : Intégration du dénominateur total national */}
+
         <div className="detailsRank">
-          {r.rank} <span className="rankDenominator">/ {r.totalCount}</span>
+          {r.rank !== null ? (
+            <>
+              {r.rank} <span className="rankDenominator">/ {r.totalCount}</span>
+            </>
+          ) : (
+            "-"
+          )}
         </div>
-        {/* 🎯 MODIFIÉ : Intégration du dénominateur total départemental/local */}
+
         <div className="detailsRankFylke">
-          {r.rankFylke} <span className="rankDenominator">/ {r.totalCountFylke}</span>
+          {r.rankFylke !== null ? (
+            <>
+              {r.rankFylke} <span className="rankDenominator">/ {r.totalCountFylke}</span>
+            </>
+          ) : (
+            "-"
+          )}
         </div>
       </button>
       <ul className="detailsElementsContainer">
@@ -88,4 +100,4 @@ function DetailsRisk({ r, countyName }: Props) {
   );
 }
 
-export default DetailsRisk;
+export default DetailsRisk; 
